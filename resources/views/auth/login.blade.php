@@ -1,69 +1,77 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+<section id="wrapper" class="new-login-register">
+      <div class="lg-info-panel">
+            <div class="inner-panel">
+                <a href="javascript:void(0)" class="p-20 di"><img src="../plugins/images/admin-logo.png"></a>
+                <div class="lg-content">
+                    <h2>Maintenance System</h2>
+                    <p class="text-muted"></p>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+      </div>
+      <div class="new-login-box">
+            <div class="white-box">
+                <h3 class="box-title m-b-0">Sign In</h3>
+                <small>Enter your details below</small>
+                <form class="form-horizontal new-lg-form" id="loginform" method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="form-group m-t-20 {{ $errors->has('email') ? 'has-error' : '' }}">
+                    <div class="col-xs-12">
+                    <label>Email Address</label>
+                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="Email">
+                    @if ($errors->has('email'))
+                        <span class="help-block with-errors">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                    </div>
+                </div>
+                <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+                    <div class="col-xs-12">
+                    <label>Password</label>
+                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Password">
+                    @if ($errors->has('password'))
+                        <span class="help-block with-errors">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                    <div class="checkbox checkbox-info pull-left p-t-0">
+                        <input id="checkbox-signup" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <label for="checkbox-signup"> {{ __('Remember Me') }} </label>
+                    </div>
+                    <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i> Forgot password?</a> </div>
+                </div>
+                <div class="form-group text-center m-t-20">
+                    <div class="col-xs-12">
+                    <button class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light" type="submit">Log In</button>
+                    </div>
+                </div>
+                </form>
+                <form class="form-horizontal" id="recoverform" action="index.html">
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                    <h3>Recover Password</h3>
+                    <p class="text-muted">Enter your Email and instructions will be sent to you! </p>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                    <input class="form-control" type="text" required="" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group text-center m-t-20">
+                    <div class="col-xs-12">
+                    <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Reset</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+      </div>            
+</section>
 @endsection
