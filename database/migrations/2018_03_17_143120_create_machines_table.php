@@ -15,7 +15,11 @@ class CreateMachinesTable extends Migration
     {
         Schema::create('machines', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('description');
+            $table->integer('area_id')->unsigned();
+            $table->foreign('area_id')->references('id')->on('areas');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
