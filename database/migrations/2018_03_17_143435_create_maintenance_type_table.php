@@ -13,11 +13,12 @@ class CreateMaintenanceTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('maintenance_type', function (Blueprint $table) {
+        Schema::create('maintenance_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

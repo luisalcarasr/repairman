@@ -18,6 +18,8 @@ class CreateAppointmentsTable extends Migration
             $table->string('description');
             $table->date('date');
             $table->integer('repeat')->nullable();
+            $table->integer('maintenance_type_id')->unsigned();
+            $table->foreign('maintenance_type_id')->references('id')->on('maintenance_types');
             $table->integer('machine_id')->unsigned();
             $table->foreign('machine_id')->references('id')->on('machines');
             $table->timestamps();
