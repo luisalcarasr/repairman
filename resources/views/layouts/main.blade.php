@@ -11,6 +11,7 @@
     <title>{{ config('app.name') }} - @yield('title')</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="../plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <!-- Menu CSS -->
     <link href="{{ asset('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css') }}" rel="stylesheet">
     <!-- toast CSS -->
@@ -59,16 +60,16 @@
                         <!-- Logo icon image, you can use font-icon also -->
                         <b>
                             <!--This is dark logo icon-->
-                            <img src="../plugins/images/admin-logo.png" alt="home" class="dark-logo" />
+                            <img src="{{ asset('plugins/images/admin-logo.png') }}" alt="home" class="dark-logo" />
                             <!--This is light logo icon-->
-                            <img src="../plugins/images/admin-logo-dark.png" alt="home" class="light-logo" />
+                            <img src="{{ asset('plugins/images/admin-logo-dark.png') }}" alt="home" class="light-logo" />
                         </b>
                         <!-- Logo text image you can use text also -->
                         <span class="hidden-xs">
                             <!--This is dark logo text-->
-                            <img src="../plugins/images/admin-text.png" alt="home" class="dark-logo" />
+                            <img src="{{ asset('../plugins/images/admin-text.png') }}" alt="home" class="dark-logo" />
                             <!--This is light logo text-->
-                            <img src="../plugins/images/admin-text-dark.png" alt="home" class="light-logo" />
+                            <img src="{{ asset('../plugins/images/admin-text-dark.png') }}" alt="home" class="light-logo" />
                         </span>
                     </a>
                 </div>
@@ -83,21 +84,28 @@
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="javascript:void(0)">
-                            <b class="hidden-xs">{{Auth::user()->name}}</b>
+                            <b class="hidden-xs">{{Auth::user()->first_name}}</b>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
                             <li>
                                 <div class="dw-user-box">
                                     <div class="u-text">
-                                        <h4>{{Auth::user()->name}}</h4>
+                                        <h4>{{Auth::user()->first_name}} {{Auth::user()->last_name}}</h4>
                                         <p class="text-muted">{{Auth::user()->email}}</p>
                                     </div>
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li><a href="javascript:void(0)"><i class="ti-settings"></i> {{ __('Account Setting') }} </a></li>
-                            <li><a href="javascript:void(0)"><i class="fa fa-power-off"></i> {{ __('Logout') }} </a></li>
+                            <li>
+                                <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-power-off"></i> {{ __('Logout') }} 
+                                </a>
+                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </ul>
                         <!-- /.dropdown-user -->
                     </li>
@@ -119,14 +127,44 @@
                 <ul class="nav" id="side-menu">
                     <li> 
                         <a href="{{route('dashboard')}}" class="waves-effect">
-                            <i class="mdi mdi-av-timer fa-fw" data-icon="v"></i>
+                            <i class="mdi mdi-home fa-fw" data-icon="v"></i>
                             <span class="hide-menu"> {{ __('Dashboard') }} </span>
                         </a>
                     </li>
                     <li> 
                         <a href="{{route('user.index')}}" class="waves-effect">
-                            <i class="mdi mdi-av-timer fa-fw" data-icon="v"></i>
+                            <i class="mdi mdi-account-multiple fa-fw" data-icon="v"></i>
                             <span class="hide-menu"> {{ __('Users') }} </span>
+                        </a>
+                    </li>
+                    <li> 
+                        <a href="{{route('user.index')}}" class="waves-effect">
+                            <i class="mdi mdi-domain fa-fw" data-icon="v"></i>
+                            <span class="hide-menu"> {{ __('Areas') }} </span>
+                        </a>
+                    </li>
+                    <li> 
+                        <a href="{{route('user.index')}}" class="waves-effect">
+                            <i class="mdi mdi-robot fa-fw" data-icon="v"></i>
+                            <span class="hide-menu"> {{ __('Machines') }} </span>
+                        </a>
+                    </li>
+                    <li> 
+                        <a href="{{route('user.index')}}" class="waves-effect">
+                            <i class="mdi mdi-settings fa-fw" data-icon="v"></i>
+                            <span class="hide-menu"> {{ __('Maintenance types') }} </span>
+                        </a>
+                    </li>
+                    <li> 
+                        <a href="{{route('user.index')}}" class="waves-effect">
+                            <i class="mdi mdi-calendar fa-fw" data-icon="v"></i>
+                            <span class="hide-menu"> {{ __('Appointments') }} </span>
+                        </a>
+                    </li>
+                    <li> 
+                        <a href="{{route('user.index')}}" class="waves-effect">
+                            <i class="mdi mdi-av-timer fa-fw" data-icon="v"></i>
+                            <span class="hide-menu"> {{ __('History') }} </span>
                         </a>
                     </li>
                 </ul>
@@ -145,6 +183,7 @@
                         <h4 class="page-title">@yield('title')</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        @yield('button')
                         <ol class="breadcrumb">
                             <li></li>
                             @yield('breadcrumb')
@@ -190,6 +229,8 @@
     <script src="{{ asset('plugins/bower_components/moment/moment.js') }}"></script>
     <script src="{{ asset('plugins/bower_components/calendar/dist/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('plugins/bower_components/calendar/dist/cal-init.js') }}"></script>
+    <!-- Tables JavaScript -->
+    <script src="{{ asset('plugins/bower_components/datatables/jquery.dataTables.min.js') }}"></script>
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('js/custom.min.js') }}"></script>
     <!-- Custom tab JavaScript -->
@@ -201,9 +242,15 @@
         });
     })();
     </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.table-improved').DataTable();
+    });
+    </script>
     <script src="{{ asset('../plugins/bower_components/toast-master/js/jquery.toast.js') }}"></script>
-    <!--Style Switcher -->
+    <!-- end - This is for export functionality only -->
     <script src="{{ asset('../plugins/bower_components/styleswitcher/jQuery.style.switcher.js') }}"></script>
+    @yield('script')
 </body>
 
 </html>
