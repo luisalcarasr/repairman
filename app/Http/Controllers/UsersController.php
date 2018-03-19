@@ -25,7 +25,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -36,7 +36,10 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User($request->all());
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return redirect()->route('user.index');
     }
 
     /**
@@ -58,7 +61,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('user.edit')->with('user', User::find($id));
     }
 
     /**
@@ -81,6 +84,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return redirect()->back();
     }
 }
