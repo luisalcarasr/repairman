@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+Use App\Http\Requests\UserRequest as Request;
 
 use App\User;
 
@@ -15,7 +15,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('user.index')->with('users', User::all());
+        return view('user.index')->with('users', User::withTrashed()->get());
     }
 
     /**
@@ -36,9 +36,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User($request->all());
-        $user->password = bcrypt($request->password);
-        $user->save();
+        User::create($request->all());
         return redirect()->route('user.index');
     }
 
@@ -73,7 +71,8 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::find($id)->fill($request->all())->save();
+        return redirect()->route('user.index');
     }
 
     /**
@@ -84,7 +83,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $user = User::withTrashed()->find($id);
+        if($user->trashed())
+            $user->restore();
+        else
+            $user->delete();
         return redirect()->back();
     }
 }

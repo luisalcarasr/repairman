@@ -45,13 +45,15 @@
                                     <!--<a class="btn btn-primary">
                                         <i class="fa fa-eye"></i>
                                     </a>-->
+                                    @if($user->id != Auth::id())
                                     <a class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('delete-form-{{$user->id}}').submit();">
-                                        <i class="fa fa-trash-o"></i>
+                                        <i class="fa fa-{{ $user->trashed() ? 'un' : '' }}lock"></i>
                                     </a>
                                     <form id="delete-form-{{$user->id}}" action="{{ route('user.destroy', $user->id) }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
