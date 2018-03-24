@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\MaintenanceTypeRequest as Request;
+use App\MaintenanceType;
 
 class MaintenanceTypesController extends Controller
 {
@@ -13,7 +14,7 @@ class MaintenanceTypesController extends Controller
      */
     public function index()
     {
-        //
+        return view('maintenance-type.index')->with('maintenance_types', MaintenanceType::withTrashed()->get());
     }
 
     /**
@@ -23,7 +24,7 @@ class MaintenanceTypesController extends Controller
      */
     public function create()
     {
-        //
+        return view('maintenance-type.create');
     }
 
     /**
@@ -34,7 +35,8 @@ class MaintenanceTypesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        MaintenanceType::create($request->all());
+        return redirect()->route('maintenance-type.index');
     }
 
     /**
@@ -45,7 +47,7 @@ class MaintenanceTypesController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('maintenance-type.create')->with('maintenance_type', MaintenanceType::find($id));
     }
 
     /**
@@ -56,7 +58,7 @@ class MaintenanceTypesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('maintenance-type.edit')->with('maintenance_type', MaintenanceType::find($id));
     }
 
     /**
@@ -68,7 +70,8 @@ class MaintenanceTypesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        MaintenanceType::find($id)->fill($request->all())->save();
+        return redirect()->route('maintenance-type.index');
     }
 
     /**
@@ -79,6 +82,11 @@ class MaintenanceTypesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $maintenance_type = MaintenanceType::withTrashed()->find($id);
+        if($maintenance_type->trashed())
+            $maintenance_type->restore();
+        else
+            $maintenance_type->delete();
+        return redirect()->back();
     }
 }
