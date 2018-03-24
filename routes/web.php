@@ -11,14 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-})->middleware('guest')->name('index');
-
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::middleware('guest')->group(function() {
+    Route::view('/', 'auth.login')->name('index');
+});
 
 Route::middleware('auth')->group(function() {
+    Route::resource('appointment', 'AppointmentsController');
+    Route::resource('area', 'AreasController');
+    Route::resource('dashboard', 'DashboardController', [ 'only' => 'index' ]);
+    Route::resource('machine', 'MachinesController');
+    Route::resource('maintenance-type', 'MaintenanceTypesController');
     Route::resource('user', 'UsersController');
 });

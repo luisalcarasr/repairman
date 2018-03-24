@@ -78,13 +78,9 @@
                 <ul class="nav navbar-top-links navbar-left">
                 </ul>
                 <ul class="nav navbar-top-links navbar-right pull-right">
-                    <li>
-                        <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                            <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
-                    </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="javascript:void(0)">
-                            <b class="hidden-xs">{{Auth::user()->first_name}}</b>
+                            <b class="hidden-xs">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</b>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
@@ -97,7 +93,6 @@
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0)"><i class="ti-settings"></i> {{ __('Account Setting') }} </a></li>
                             <li>
                                 <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="fa fa-power-off"></i> {{ __('Logout') }} 
@@ -126,7 +121,7 @@
                     <h3><span class="fa-fw open-close"><i class="ti-menu hidden-xs"></i><i class="ti-close visible-xs"></i></span> <span class="hide-menu">Navigation</span></h3> </div>
                 <ul class="nav" id="side-menu">
                     <li> 
-                        <a href="{{route('dashboard')}}" class="waves-effect">
+                        <a href="{{route('dashboard.index')}}" class="waves-effect">
                             <i class="mdi mdi-home fa-fw" data-icon="v"></i>
                             <span class="hide-menu"> {{ __('Dashboard') }} </span>
                         </a>
@@ -138,33 +133,27 @@
                         </a>
                     </li>
                     <li> 
-                        <a href="{{route('user.index')}}" class="waves-effect">
+                        <a href="{{route('area.index')}}" class="waves-effect">
                             <i class="mdi mdi-domain fa-fw" data-icon="v"></i>
                             <span class="hide-menu"> {{ __('Areas') }} </span>
                         </a>
                     </li>
                     <li> 
-                        <a href="{{route('user.index')}}" class="waves-effect">
+                        <a href="{{route('machine.index')}}" class="waves-effect">
                             <i class="mdi mdi-robot fa-fw" data-icon="v"></i>
                             <span class="hide-menu"> {{ __('Machines') }} </span>
                         </a>
                     </li>
                     <li> 
-                        <a href="{{route('user.index')}}" class="waves-effect">
+                        <a href="{{route('maintenance-type.index')}}" class="waves-effect">
                             <i class="mdi mdi-settings fa-fw" data-icon="v"></i>
                             <span class="hide-menu"> {{ __('Maintenance types') }} </span>
                         </a>
                     </li>
                     <li> 
-                        <a href="{{route('user.index')}}" class="waves-effect">
+                        <a href="{{route('appointment.index')}}" class="waves-effect">
                             <i class="mdi mdi-calendar fa-fw" data-icon="v"></i>
                             <span class="hide-menu"> {{ __('Appointments') }} </span>
-                        </a>
-                    </li>
-                    <li> 
-                        <a href="{{route('user.index')}}" class="waves-effect">
-                            <i class="mdi mdi-av-timer fa-fw" data-icon="v"></i>
-                            <span class="hide-menu"> {{ __('History') }} </span>
                         </a>
                     </li>
                 </ul>
