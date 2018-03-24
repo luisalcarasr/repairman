@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\AreaRequest as Request;
+
+use App\Area;
 
 class AreasController extends Controller
 {
@@ -13,7 +15,7 @@ class AreasController extends Controller
      */
     public function index()
     {
-        //
+        return view('area.index')->with('areas', Area::withTrashed()->get());
     }
 
     /**
@@ -23,7 +25,7 @@ class AreasController extends Controller
      */
     public function create()
     {
-        //
+        return view('area.create');
     }
 
     /**
@@ -34,7 +36,8 @@ class AreasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Area::create($request->all());
+        return redirect()->route('area.index');
     }
 
     /**
@@ -45,7 +48,7 @@ class AreasController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('area.create')->with('area', Area::find($id));
     }
 
     /**
@@ -56,7 +59,7 @@ class AreasController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('area.edit')->with('area', Area::find($id));
     }
 
     /**
@@ -68,7 +71,8 @@ class AreasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Area::find($id)->fill($request->all())->save();
+        return redirect()->route('area.index');
     }
 
     /**
@@ -79,6 +83,11 @@ class AreasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $area = Area::withTrashed()->find($id);
+        if($area->trashed())
+            $area->restore();
+        else
+            $area->delete();
+        return redirect()->back();
     }
 }
