@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\MachineRequest as Request;
+use App\Machine;
+use App\Area;
 
 class MachinesController extends Controller
 {
@@ -13,7 +15,7 @@ class MachinesController extends Controller
      */
     public function index()
     {
-        //
+        return view('machine.index')->with('machines', Machine::withTrashed()->get());
     }
 
     /**
@@ -23,7 +25,7 @@ class MachinesController extends Controller
      */
     public function create()
     {
-        //
+        return view('machine.create')->with('areas', Area::all());
     }
 
     /**
@@ -34,7 +36,8 @@ class MachinesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Machine::create($request->all());
+        return redirect()->route('machine.index');
     }
 
     /**
@@ -45,7 +48,7 @@ class MachinesController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('machine.show')->with('machine', Machine::find($id));
     }
 
     /**
@@ -56,7 +59,7 @@ class MachinesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('machine.edit')->with('machine', Machine::find($id))->with('areas', Area::all());
     }
 
     /**
@@ -68,7 +71,8 @@ class MachinesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Machine::find($id)->fill($request->all())->save();
+        return redirect()->route('machine.index');
     }
 
     /**
@@ -79,6 +83,11 @@ class MachinesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $machine = Machine::withTrashed()->find($id);
+        if($machine->trashed())
+            $machine->restore();
+        else
+            $machine->delete();
+        return redirect()->back();
     }
 }
