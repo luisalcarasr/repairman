@@ -18,10 +18,10 @@ Route::middleware('guest')->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
-    Route::resource('appointment', 'AppointmentsController');
     Route::resource('area', 'AreasController');
     Route::resource('dashboard', 'DashboardController', [ 'only' => 'index' ]);
     Route::resource('machine', 'MachinesController');
+    Route::resource('maintenance', 'MaintenancesController');
     Route::resource('maintenance-type', 'MaintenanceTypesController');
     Route::resource('user', 'UsersController');
 });

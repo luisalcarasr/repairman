@@ -144,16 +144,16 @@
                             <span class="hide-menu"> {{ __('Machines') }} </span>
                         </a>
                     </li>
-                    <li> 
+                    <!--li> 
                         <a href="{{route('maintenance-type.index')}}" class="waves-effect">
                             <i class="mdi mdi-settings fa-fw" data-icon="v"></i>
                             <span class="hide-menu"> {{ __('Maintenance types') }} </span>
                         </a>
-                    </li>
+                    </li-->
                     <li> 
-                        <a href="{{route('appointment.index')}}" class="waves-effect">
+                        <a href="{{route('maintenance.index')}}" class="waves-effect">
                             <i class="mdi mdi-calendar fa-fw" data-icon="v"></i>
-                            <span class="hide-menu"> {{ __('Appointments') }} </span>
+                            <span class="hide-menu"> {{ __('Maintenances') }} </span>
                         </a>
                     </li>
                 </ul>
@@ -173,10 +173,10 @@
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         @yield('button')
-                        <ol class="breadcrumb">
+                        <!--ol class="breadcrumb">
                             <li></li>
                             @yield('breadcrumb')
-                        </ol>
+                        </ol-->
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>

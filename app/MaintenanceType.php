@@ -29,8 +29,8 @@ class MaintenanceType extends Model
         'deleted_at',
     ];
 
-    public function appointments() 
+    public function maintenances() 
     {
-        return $this->hasMany('App\Appointment');
+        return $this->hasMany('App\Maintenance');
     }
 }

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\MaintenanceRequest as Request;
+use App\Maintenance;
+use App\Machine;
+use App\MaintenanceType;
 
-class AppointmentsController extends Controller
+class MaintenancesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,7 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        //
+        return view('maintenance.index')->with('maintenances', Maintenance::withTrashed()->get()->sortBy('date'));
     }
 
     /**
@@ -23,7 +26,7 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
-        //
+        return view('maintenance.create')->with('machines', Machine::all())->with('maintenance_types', MaintenanceType::all());
     }
 
     /**
@@ -34,7 +37,11 @@ class AppointmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new Maintenance($request->all());
+        $user->status = "Pending";
+        $user->repeat_each = $request->repeat_each ? $request->repeat_each : 0;
+        $user->save();
+        return redirect()->route('maintenance.index');
     }
 
     /**
@@ -45,7 +52,7 @@ class AppointmentsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('maintenance.show')->with('maintenance', Maintenace::find($id));
     }
 
     /**
@@ -56,7 +63,7 @@ class AppointmentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('maintenance.edit')->with('maintenance', Maintenance::find($id))->with('machines', Machine::all())->with('maintenance_types', MaintenanceType::all());;
     }
 
     /**
@@ -68,7 +75,8 @@ class AppointmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Maintenance::find($id)->fill($request->all())->save();
+        return redirect()->route('maintenance.index');
     }
 
     /**
@@ -79,6 +87,11 @@ class AppointmentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $maintenance = Maintenance::withTrashed()->find($id);
+        if($maintenance->trashed())
+            $maintenance->restore();
+        else
+            $maintenance->delete();
+        return redirect()->back();
     }
 }

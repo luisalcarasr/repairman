@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Appointment extends Model
+class Maintenance extends Model
 {
     use SoftDeletes;
 
@@ -15,7 +15,7 @@ class Appointment extends Model
      * @var array
      */
     protected $fillable = [
-        'description', 'date', 'repeat', 'machine_id',
+        'description', 'programmed_to', 'repeat', 'machine_id', 'maintenance_type_id',
     ];
 
     /**
@@ -27,7 +27,7 @@ class Appointment extends Model
         'created_at',
         'updated_at',
         'deleted_at',
-        'date',
+        'programmed_to',
     ];
 
     public function machine()

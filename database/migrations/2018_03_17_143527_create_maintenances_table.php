@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppointmentsTable extends Migration
+class CreateMaintenancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateAppointmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('maintenances', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description');
-            $table->date('date');
-            $table->integer('repeat')->nullable();
+            $table->string('status');
+            $table->integer('repeat_each');
+            $table->date('programmed_to');
             $table->integer('maintenance_type_id')->unsigned();
             $table->foreign('maintenance_type_id')->references('id')->on('maintenance_types');
             $table->integer('machine_id')->unsigned();
