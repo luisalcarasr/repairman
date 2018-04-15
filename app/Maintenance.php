@@ -15,7 +15,7 @@ class Maintenance extends Model
      * @var array
      */
     protected $fillable = [
-        'description', 'programmed_to', 'repeat', 'machine_id', 'maintenance_type_id',
+        'description', 'programmed_to', 'repeat_each', 'machine_id', 'maintenance_type_id', 'status', 'started_at'
     ];
 
     /**
@@ -27,6 +27,7 @@ class Maintenance extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'started_at',
         'programmed_to',
     ];
 

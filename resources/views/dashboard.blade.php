@@ -41,6 +41,15 @@
                                         @csrf
                                         @method('DELETE')
                                     </form>
+                                    @if(Auth::user()->hasPermissionTo('write maintenances') && $maintenance->status != 'completed')
+                                    <a class="btn btn-success" onclick="event.preventDefault(); document.getElementById('complete-form-{{$maintenance->id}}').submit();">
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    @endif
+                                    <form id="complete-form-{{$maintenance->id}}" action="{{ route('maintenance.complete', $maintenance->id) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('PUT')
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

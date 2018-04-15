@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 class MaintenanceRequest extends FormRequest
@@ -22,7 +21,7 @@ class MaintenanceRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function store()
     {
         return [
             'description' => 'required',
@@ -30,6 +29,23 @@ class MaintenanceRequest extends FormRequest
             'programmed_to' => 'required',
             'machine_id' => 'required',
             'maintenance_type_id' => 'required',
+        ];
+    }
+
+    /**
+     * Get the validation rules that apply to the store request.
+     *
+     * @return array
+     */
+    public function update(){
+        return [
+            'description' => '',
+            'repeat_each' => 'min:0|max:12',
+            'programmed_to' => '',
+            'machine_id' => '',
+            'maintenance_type_id' => '',
+            'status' => '',
+            'started_at' => '',
         ];
     }
 }

@@ -46,6 +46,11 @@
                                         @csrf
                                         @method('DELETE')
                                     </form>
+                                    @if(Auth::user()->hasPermissionTo('write maintenances') && $maintenance->status != 'completed')
+                                    <a class="btn btn-success" onclick="event.preventDefault(); document.getElementById('complete-form-{{$maintenance->id}}').submit();">
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

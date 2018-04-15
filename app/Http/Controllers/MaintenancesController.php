@@ -50,7 +50,8 @@ class MaintenancesController extends Controller
     public function store(Request $request)
     {
         $user = new Maintenance($request->all());
-        $user->status = "Pending";
+        $user->status = "pending";
+        $user->started_at = $request->programmed_to;
         $user->repeat_each = $request->repeat_each ? $request->repeat_each : 0;
         $user->save();
         flash(trans("messages.success.maintenance.store"))->success()->important();
@@ -101,6 +102,32 @@ class MaintenancesController extends Controller
         Maintenance::find($id)->fill($request->all())->save();
         flash(trans("messages.success.maintenance.update"))->success()->important();
         return redirect()->route('maintenance.index');
+    }
+
+
+    /**
+     * Complete the maintenance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function complete(Request $request, $id)
+    {
+        $maintenance = Maintenance::find($id);
+        $maintenance->status = 'completed';
+        $maintenance->save();
+
+        $new = new Maintenance($maintenance->toArray());
+        $new->programmed_to = $maintenance->started_at->addMonths($new->repeat_each);
+        $new->started_at = $new->programmed_to;
+        $new->status = 'pending';
+        $new->save();
+
+        $maintenance->delete();
+
+        flash(trans("messages.success.maintenance.update"))->success()->important();
+        return redirect()->back();
     }
 
     /**

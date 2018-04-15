@@ -24,4 +24,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('maintenance', 'MaintenancesController');
     Route::resource('maintenance-type', 'MaintenanceTypesController');
     Route::resource('user', 'UsersController');
+
+    //complete maintenance
+    Route::put('maintenance/{id}/complete', 'MaintenancesController@complete')->name('maintenance.complete');;
 });
