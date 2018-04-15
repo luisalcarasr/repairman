@@ -50,6 +50,43 @@
                             @endif
                         </div>
                     </div>
+                    <div class="form-group {{ $errors->has('role_id') ? 'has-error' : '' }}">
+                        <label class="col-md-12" for="_id">Role</label>
+                        <div class="col-md-12">
+                            <select id="role_id" name="role_id" class="form-control" placeholder="Role" value="{{ old('role_id') }}">
+                                @foreach($roles as $role)
+                                    <option value="{{ $role->id }}" {{ old('role_id') == $role->id || $role->name == $user->roles->first()->name ? 'selected' : '' }}>{{ __('roles.'.$role->name) }}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('role_id'))
+                                <span class="help-block with-errors">
+                                    <strong>{{ $errors->first('role_id') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+                        <label class="col-md-12" for="password">Password</label>
+                        <div class="col-md-12">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                            @if ($errors->has('password'))
+                                <span class="help-block with-errors">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
+                        <label class="col-md-12" for="password_confirmation">Password confirmation</label>
+                        <div class="col-md-12">
+                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Password confirmation">
+                            @if ($errors->has('password_confirmation'))
+                                <span class="help-block with-errors">
+                                    <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

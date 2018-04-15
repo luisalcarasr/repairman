@@ -27,6 +27,7 @@ class UserRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed|min:8',
         ];
     }
 
@@ -41,6 +42,7 @@ class UserRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email'.($user->email == $this->email ? '' : '|unique:users,email'),
+            'password' => $this->password ? 'confirmed|min:8' : '',
         ];
     }
 }
