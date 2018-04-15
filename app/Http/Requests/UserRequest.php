@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class UserRequest extends FormRequest
@@ -13,7 +14,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user()->hasPermissionTo('write users');
     }
 
     /**

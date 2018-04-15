@@ -17,29 +17,22 @@ class PermissionsTableSeeder extends Seeder
         $admin = Role::create(['name' => 'admin']);
         $supervisor = Role::create(['name' => 'supervisor']);
 
-        // Permissions for watch the records.
-        Permission::create(['name' => 'watch areas']);
-        Permission::create(['name' => 'watch machines']);
-        Permission::create(['name' => 'watch maintenances']);
-        Permission::create(['name' => 'watch maintenance types']);
-        Permission::create(['name' => 'watch users']);
+        // Permissions for read the records.
+        Permission::create(['name' => 'read areas']);
+        Permission::create(['name' => 'read machines']);
+        Permission::create(['name' => 'read maintenances']);
+        Permission::create(['name' => 'read maintenance types']);
+        Permission::create(['name' => 'read users']);
 
-        // Suspervisor role can watch all records.
+        // Suspervisor role can read all records.
         $supervisor->syncPermissions(Permission::all());
 
-        // Permissions for create the records.
-        Permission::create(['name' => 'create areas']);
-        Permission::create(['name' => 'create machines']);
-        Permission::create(['name' => 'create maintenances']);
-        Permission::create(['name' => 'create maintenance types']);
-        Permission::create(['name' => 'create users']);
-
-        // Permissions for edit the records.
-        Permission::create(['name' => 'edit areas']);
-        Permission::create(['name' => 'edit machines']);
-        Permission::create(['name' => 'edit maintenances']);
-        Permission::create(['name' => 'edit maintenance types']);
-        Permission::create(['name' => 'edit users']);
+        // Permissions for write the records.
+        Permission::create(['name' => 'write areas']);
+        Permission::create(['name' => 'write machines']);
+        Permission::create(['name' => 'write maintenances']);
+        Permission::create(['name' => 'write maintenance types']);
+        Permission::create(['name' => 'write users']);
 
         // Permissions for delete the records.
         Permission::create(['name' => 'delete areas']);

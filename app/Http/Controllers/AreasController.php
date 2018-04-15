@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AreaRequest as Request;
-
 use App\Area;
 
 class AreasController extends Controller

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AreaRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class AreaRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user()->hasPermissionTo('write areas');
     }
 
     /**

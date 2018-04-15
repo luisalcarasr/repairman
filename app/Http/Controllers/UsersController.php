@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 Use App\Http\Requests\UserRequest as Request;
-
 use App\User;
 
 class UsersController extends Controller
