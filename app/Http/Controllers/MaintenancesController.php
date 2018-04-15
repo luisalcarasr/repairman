@@ -117,6 +117,7 @@ class MaintenancesController extends Controller
         $maintenance = Maintenance::find($id);
         $maintenance->status = 'completed';
         $maintenance->save();
+        $maintenance->delete();
 
         $new = new Maintenance($maintenance->toArray());
         $new->programmed_to = $maintenance->started_at->addMonths($new->repeat_each);
@@ -124,7 +125,6 @@ class MaintenancesController extends Controller
         $new->status = 'pending';
         $new->save();
 
-        $maintenance->delete();
 
         flash(trans("messages.success.maintenance.update"))->success()->important();
         return redirect()->back();
@@ -142,11 +142,14 @@ class MaintenancesController extends Controller
             $maintenance = Maintenance::withTrashed()->find($id);
             if($maintenance->trashed()) {
                 $maintenance->restore();
+                $maintenance->status = 'restored';
                 flash(trans("messages.success.maintenance.restore"))->info()->important();
             } else {
                 $maintenance->delete();
+                $maintenance->status = 'locked';
                 flash(trans("messages.success.maintenance.delete"))->warning()->important();
             }
+            $maintenance->save();
             return redirect()->back();
         } else {
             flash(trans("permission.delete.maintenance"))->error()->important();

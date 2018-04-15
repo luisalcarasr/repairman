@@ -187,7 +187,7 @@
                 @yield('content')
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Luis Adrian Alcaras Rubalcava </footer>
+            <footer class="footer text-center"> {{ \Carbon\Carbon::now()->format('Y') }} &copy; <a href="http://luisalcaras.me">Luis Adrian Alcaras Rubalcava</a> </footer>
         </div>
         <!-- ============================================================== -->
         <!-- End Page Content -->

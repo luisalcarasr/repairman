@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('area', 'AreasController');
     Route::resource('dashboard', 'DashboardController', [ 'only' => ['show', 'index'] ]);
     Route::resource('machine', 'MachinesController');
-    Route::resource('maintenance', 'MaintenancesController');
+    Route::resource('maintenance', 'MaintenancesController', [ 'except' => 'show' ]);
     Route::resource('maintenance-type', 'MaintenanceTypesController');
     Route::resource('user', 'UsersController');
 

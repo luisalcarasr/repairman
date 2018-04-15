@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Machines')
+@section('title', $area->name)
 @section('button')
 <a href="{{ route('machine.create') }}" class="btn btn-info pull-right m-l-20">
     <i class="fa fa-plus text-white"></i>
@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($machines as $machine)
+                            @foreach($area->machines as $machine)
                             <tr>
                                 <td>{{ $machine->id }}</td>
                                 <td>{{ $machine->description }}</td>

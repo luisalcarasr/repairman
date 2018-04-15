@@ -38,9 +38,9 @@
                                     <a class="btn btn-warning" href="{{ route('area.edit', $area->id) }}">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <!--<a class="btn btn-primary">
+                                    <a class="btn btn-primary" href="{{ route('area.show', $area->id) }}">
                                         <i class="fa fa-eye"></i>
-                                    </a>-->
+                                    </a>
                                     <a class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('delete-form-{{$area->id}}').submit();">
                                         <i class="fa fa-{{ $area->trashed() ? 'un' : '' }}lock"></i>
                                     </a>

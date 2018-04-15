@@ -60,7 +60,7 @@ class MaintenanceTypesController extends Controller
     public function show($id)
     {
         if (Auth::user()->hasPermissionTo('read maintenance types')) {
-            return view('maintenance-type.create')->with('maintenance_type', MaintenanceType::find($id));
+            return view('maintenance-type.show')->with('maintenance_type', MaintenanceType::find($id));
         } else {
             flash(trans("permission.read.maintenance-type"))->error()->important();
             return back();
