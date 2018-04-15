@@ -127,12 +127,6 @@
                         </a>
                     </li>
                     <li> 
-                        <a href="{{route('user.index')}}" class="waves-effect">
-                            <i class="mdi mdi-account-multiple fa-fw" data-icon="v"></i>
-                            <span class="hide-menu"> {{ __('Users') }} </span>
-                        </a>
-                    </li>
-                    <li> 
                         <a href="{{route('area.index')}}" class="waves-effect">
                             <i class="mdi mdi-domain fa-fw" data-icon="v"></i>
                             <span class="hide-menu"> {{ __('Areas') }} </span>
@@ -144,16 +138,22 @@
                             <span class="hide-menu"> {{ __('Machines') }} </span>
                         </a>
                     </li>
-                    <!--li> 
-                        <a href="{{route('maintenance-type.index')}}" class="waves-effect">
-                            <i class="mdi mdi-settings fa-fw" data-icon="v"></i>
-                            <span class="hide-menu"> {{ __('Maintenance types') }} </span>
-                        </a>
-                    </li-->
                     <li> 
                         <a href="{{route('maintenance.index')}}" class="waves-effect">
                             <i class="mdi mdi-calendar fa-fw" data-icon="v"></i>
                             <span class="hide-menu"> {{ __('Maintenances') }} </span>
+                        </a>
+                    </li>
+                    <li> 
+                        <a href="{{route('maintenance-type.index')}}" class="waves-effect">
+                            <i class="mdi mdi-settings fa-fw" data-icon="v"></i>
+                            <span class="hide-menu"> {{ __('Maintenance types') }} </span>
+                        </a>
+                    </li>
+                    <li> 
+                        <a href="{{route('user.index')}}" class="waves-effect">
+                            <i class="mdi mdi-account-multiple fa-fw" data-icon="v"></i>
+                            <span class="hide-menu"> {{ __('Users') }} </span>
                         </a>
                     </li>
                 </ul>
@@ -180,6 +180,7 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
+                @include('flash::message')
                 <!-- /.row -->
                 @yield('content')
             </div>

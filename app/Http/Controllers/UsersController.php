@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 Use App\Http\Requests\UserRequest as Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class UsersController extends Controller
@@ -14,7 +15,12 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('user.index')->with('users', User::withTrashed()->get());
+        if (Auth::user()->hasPermissionTo('read users')) {
+            return view('user.index')->with('users', User::withTrashed()->get());
+        } else {
+            flash(trans("permission.read.user"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -24,7 +30,12 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        if (Auth::user()->hasPermissionTo('write users')) {
+            return view('user.create');
+        } else {
+            flash(trans("permission.write.user"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -47,7 +58,12 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        if (Auth::user()->hasPermissionTo('read users')) {
+            return view('user.show');
+        } else {
+            flash(trans("permission.read.user"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -58,7 +74,12 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('user.edit')->with('user', User::find($id));
+        if (Auth::user()->hasPermissionTo('write users')) {
+            return view('user.edit')->with('user', User::find($id));
+        } else {
+            flash(trans("permission.write.user"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -82,11 +103,16 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::withTrashed()->find($id);
-        if($user->trashed())
-            $user->restore();
-        else
-            $user->delete();
-        return redirect()->back();
+        if (Auth::user()->hasPermissionTo('delete users')) {
+            $user = User::withTrashed()->find($id);
+            if($user->trashed())
+                $user->restore();
+            else
+                $user->delete();
+            return redirect()->back();
+        } else {
+            flash(trans("permission.delete.users"))->error()->important();
+            return back();
+        }
     }
 }

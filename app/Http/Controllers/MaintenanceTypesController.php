@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MaintenanceTypeRequest as Request;
+use Illuminate\Support\Facades\Auth;
 use App\MaintenanceType;
 
 class MaintenanceTypesController extends Controller
@@ -14,7 +15,12 @@ class MaintenanceTypesController extends Controller
      */
     public function index()
     {
-        return view('maintenance-type.index')->with('maintenance_types', MaintenanceType::withTrashed()->get());
+        if (Auth::user()->hasPermissionTo('read maintenance types')) {
+            return view('maintenance-type.index')->with('maintenance_types', MaintenanceType::withTrashed()->get());
+        } else {
+            flash(trans("permission.read.maintenance-type"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -24,7 +30,12 @@ class MaintenanceTypesController extends Controller
      */
     public function create()
     {
-        return view('maintenance-type.create');
+        if (Auth::user()->hasPermissionTo('write maintenance types')) {
+            return view('maintenance-type.create');
+        } else {
+            flash(trans("permission.write.maintenance-type"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -47,7 +58,12 @@ class MaintenanceTypesController extends Controller
      */
     public function show($id)
     {
-        return view('maintenance-type.create')->with('maintenance_type', MaintenanceType::find($id));
+        if (Auth::user()->hasPermissionTo('read maintenance types')) {
+            return view('maintenance-type.create')->with('maintenance_type', MaintenanceType::find($id));
+        } else {
+            flash(trans("permission.read.maintenance-type"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -58,7 +74,12 @@ class MaintenanceTypesController extends Controller
      */
     public function edit($id)
     {
-        return view('maintenance-type.edit')->with('maintenance_type', MaintenanceType::find($id));
+        if (Auth::user()->hasPermissionTo('write maintenance types')) {
+            return view('maintenance-type.edit')->with('maintenance_type', MaintenanceType::find($id));
+        } else {
+            flash(trans("permission.write.maintenance-type"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -82,11 +103,16 @@ class MaintenanceTypesController extends Controller
      */
     public function destroy($id)
     {
-        $maintenance_type = MaintenanceType::withTrashed()->find($id);
-        if($maintenance_type->trashed())
-            $maintenance_type->restore();
-        else
-            $maintenance_type->delete();
-        return redirect()->back();
+        if (Auth::user()->hasPermissionTo('delete maintenance types')) {
+            $maintenance_type = MaintenanceType::withTrashed()->find($id);
+            if($maintenance_type->trashed())
+                $maintenance_type->restore();
+            else
+                $maintenance_type->delete();
+            return redirect()->back();
+        } else {
+            flash(trans("permission.delete.maintenance-type"))->error()->important();
+            return back();
+        }
     }
 }

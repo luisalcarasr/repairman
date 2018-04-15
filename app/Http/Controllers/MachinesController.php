@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MachineRequest as Request;
+use Illuminate\Support\Facades\Auth;
 use App\Machine;
 use App\Area;
 
@@ -15,7 +16,12 @@ class MachinesController extends Controller
      */
     public function index()
     {
-        return view('machine.index')->with('machines', Machine::withTrashed()->get());
+        if (Auth::user()->hasPermissionTo('read machines')) {
+            return view('machine.index')->with('machines', Machine::withTrashed()->get());
+        } else {
+            flash(trans("permission.read.machine"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -25,7 +31,12 @@ class MachinesController extends Controller
      */
     public function create()
     {
-        return view('machine.create')->with('areas', Area::all());
+        if (Auth::user()->hasPermissionTo('write machines')) {
+            return view('machine.create')->with('areas', Area::all());
+        } else {
+            flash(trans("permission.write.machine"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -48,7 +59,12 @@ class MachinesController extends Controller
      */
     public function show($id)
     {
-        return view('machine.show')->with('machine', Machine::find($id));
+        if (Auth::user()->hasPermissionTo('read machines')) {
+            return view('machine.show')->with('machine', Machine::find($id));
+        } else {
+            flash(trans("permission.read.machine"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -59,7 +75,12 @@ class MachinesController extends Controller
      */
     public function edit($id)
     {
-        return view('machine.edit')->with('machine', Machine::find($id))->with('areas', Area::all());
+        if (Auth::user()->hasPermissionTo('write machines')) {
+            return view('machine.edit')->with('machine', Machine::find($id))->with('areas', Area::all());
+        } else {
+            flash(trans("permission.write.machine"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -83,11 +104,16 @@ class MachinesController extends Controller
      */
     public function destroy($id)
     {
-        $machine = Machine::withTrashed()->find($id);
-        if($machine->trashed())
-            $machine->restore();
-        else
-            $machine->delete();
-        return redirect()->back();
+        if (Auth::user()->hasPermissionTo('delete machines')) {
+            $machine = Machine::withTrashed()->find($id);
+            if($machine->trashed())
+                $machine->restore();
+            else
+                $machine->delete();
+            return redirect()->back();
+        } else {
+            flash(trans("permission.delete.machine"))->error()->important();
+            return back();
+        }
     }
 }

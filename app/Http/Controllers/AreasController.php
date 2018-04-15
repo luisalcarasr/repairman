@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AreaRequest as Request;
+use Illuminate\Support\Facades\Auth;
 use App\Area;
 
 class AreasController extends Controller
@@ -14,7 +15,12 @@ class AreasController extends Controller
      */
     public function index()
     {
-        return view('area.index')->with('areas', Area::withTrashed()->get());
+        if (Auth::user()->hasPermissionTo('read areas')) {
+            return view('area.index')->with('areas', Area::withTrashed()->get());
+        } else {
+            flash(trans("permission.read.area"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -24,7 +30,12 @@ class AreasController extends Controller
      */
     public function create()
     {
-        return view('area.create');
+        if (Auth::user()->hasPermissionTo('write areas')) {
+            return view('area.create');
+        } else {
+            flash(trans("permission.write.area"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -47,7 +58,12 @@ class AreasController extends Controller
      */
     public function show($id)
     {
-        return view('area.create')->with('area', Area::find($id));
+        if (Auth::user()->hasPermissionTo('read areas')) {
+            return view('area.show')->with('area', Area::find($id));
+        } else {
+            flash(trans("permission.read.area"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -58,7 +74,12 @@ class AreasController extends Controller
      */
     public function edit($id)
     {
-        return view('area.edit')->with('area', Area::find($id));
+        if (Auth::user()->hasPermissionTo('write areas')) {
+            return view('area.edit')->with('area', Area::find($id));
+        } else {
+            flash(trans("permission.write.area"))->error()->important();
+            return back();
+        }
     }
 
     /**
@@ -82,11 +103,16 @@ class AreasController extends Controller
      */
     public function destroy($id)
     {
-        $area = Area::withTrashed()->find($id);
-        if($area->trashed())
-            $area->restore();
-        else
-            $area->delete();
-        return redirect()->back();
+        if (Auth::user()->hasPermissionTo('delete areas')) {
+            $area = Area::withTrashed()->find($id);
+            if($area->trashed())
+                $area->restore();
+            else
+                $area->delete();
+            return redirect()->back();
+        } else {
+            flash(trans("permission.delete.area"))->error()->important();
+            return back();
+        }
     }
 }
