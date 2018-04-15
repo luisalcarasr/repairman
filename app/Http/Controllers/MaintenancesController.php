@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MaintenanceRequest as Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Maintenance;
 use App\Machine;
 use App\MaintenanceType;
@@ -18,9 +19,9 @@ class MaintenancesController extends Controller
     public function index()
     {
         if (Auth::user()->hasPermissionTo('read maintenances')) {
-            return view('maintenance.index')->with('maintenances', Maintenance::withTrashed()->get()->sortBy('date'));
+            return view('maintenance.index')->with('maintenances', Maintenance::withTrashed()->get());
         } else {
-            flash(trans("permission.read.maintenanace"))->error()->important();
+            flash(trans("permission.read.maintenance"))->error()->important();
             return back();
         }
     }
@@ -65,7 +66,7 @@ class MaintenancesController extends Controller
     public function show($id)
     {
         if (Auth::user()->hasPermissionTo('read maintenances')) {
-            return view('maintenance.show')->with('maintenance', Maintenace::find($id));
+            return view('maintenance.index')->with('maintenances', Maintenance::withTrashed());
         } else {
             flash(trans("permission.read.maintenance"))->error()->important();
             return back();

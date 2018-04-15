@@ -22,12 +22,14 @@
     <link href="{{ asset('plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css') }}" rel="stylesheet">
     <!-- Calendar CSS -->
     <link href="{{ asset('plugins/bower_components/calendar/dist/fullcalendar.css') }}" rel="stylesheet" />
+    <link href="{{ asset('plugins/bower_components/zabuto_calendar/zabuto_calendar.min.css') }}" rel="stylesheet">
     <!-- animation CSS -->
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <!-- color CSS -->
     <link href="{{ asset('css/colors/megna-dark.css') }}" id="theme" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -240,6 +242,7 @@
     <script src="{{ asset('../plugins/bower_components/toast-master/js/jquery.toast.js') }}"></script>
     <!-- end - This is for export functionality only -->
     <script src="{{ asset('../plugins/bower_components/styleswitcher/jQuery.style.switcher.js') }}"></script>
+    <script src="{{ asset('plugins/bower_components/zabuto_calendar/zabuto_calendar.min.js') }}"></script>
     @yield('script')
 </body>
 

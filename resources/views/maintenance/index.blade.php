@@ -10,7 +10,7 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
             <div class="white-box">
                 <div class="table-responsive">
                     <table class="table table-striped table-improved">
@@ -26,7 +26,7 @@
                         </thead>
                         <tbody>
                             @foreach($maintenances as $maintenance)
-                            <tr>
+                            <tr class="{{ $maintenance->deleted_at ? 'text-muted' : '' }}">
                                 <td>{{ $maintenance->id }}</td>
                                 <td>{{ $maintenance->machine->description }}</td>
                                 <td>{{ $maintenance->description }}</td>

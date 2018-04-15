@@ -19,7 +19,7 @@ Route::middleware('guest')->group(function() {
 
 Route::middleware('auth')->group(function() {
     Route::resource('area', 'AreasController');
-    Route::resource('dashboard', 'DashboardController', [ 'only' => 'index' ]);
+    Route::resource('dashboard', 'DashboardController', [ 'only' => ['show', 'index'] ]);
     Route::resource('machine', 'MachinesController');
     Route::resource('maintenance', 'MaintenancesController');
     Route::resource('maintenance-type', 'MaintenanceTypesController');
