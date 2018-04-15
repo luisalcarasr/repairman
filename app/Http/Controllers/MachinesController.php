@@ -48,6 +48,7 @@ class MachinesController extends Controller
     public function store(Request $request)
     {
         Machine::create($request->all());
+        flash(trans("messages.success.machine.store"))->success()->important();
         return redirect()->route('machine.index');
     }
 
@@ -93,6 +94,7 @@ class MachinesController extends Controller
     public function update(Request $request, $id)
     {
         Machine::find($id)->fill($request->all())->save();
+        flash(trans("messages.success.machine.update"))->success()->important();
         return redirect()->route('machine.index');
     }
 
@@ -106,10 +108,13 @@ class MachinesController extends Controller
     {
         if (Auth::user()->hasPermissionTo('delete machines')) {
             $machine = Machine::withTrashed()->find($id);
-            if($machine->trashed())
+            if($machine->trashed()) {
                 $machine->restore();
-            else
+                flash(trans("messages.success.machine.restore"))->info()->important();
+            } else {
                 $machine->delete();
+                flash(trans("messages.success.machine.delete"))->warning()->important();
+            }
             return redirect()->back();
         } else {
             flash(trans("permission.delete.machine"))->error()->important();

@@ -52,6 +52,7 @@ class MaintenancesController extends Controller
         $user->status = "Pending";
         $user->repeat_each = $request->repeat_each ? $request->repeat_each : 0;
         $user->save();
+        flash(trans("messages.success.maintenance.store"))->success()->important();
         return redirect()->route('maintenance.index');
     }
 
@@ -97,6 +98,7 @@ class MaintenancesController extends Controller
     public function update(Request $request, $id)
     {
         Maintenance::find($id)->fill($request->all())->save();
+        flash(trans("messages.success.maintenance.update"))->success()->important();
         return redirect()->route('maintenance.index');
     }
 
@@ -110,10 +112,13 @@ class MaintenancesController extends Controller
     {
         if (Auth::user()->hasPermissionTo('delete maintenances')) {
             $maintenance = Maintenance::withTrashed()->find($id);
-            if($maintenance->trashed())
+            if($maintenance->trashed()) {
                 $maintenance->restore();
-            else
+                flash(trans("messages.success.maintenance.restore"))->info()->important();
+            } else {
                 $maintenance->delete();
+                flash(trans("messages.success.maintenance.delete"))->warning()->important();
+            }
             return redirect()->back();
         } else {
             flash(trans("permission.delete.maintenance"))->error()->important();

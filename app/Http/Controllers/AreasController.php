@@ -47,6 +47,7 @@ class AreasController extends Controller
     public function store(Request $request)
     {
         Area::create($request->all());
+        flash(trans("messages.success.area.store"))->success()->important();
         return redirect()->route('area.index');
     }
 
@@ -92,6 +93,7 @@ class AreasController extends Controller
     public function update(Request $request, $id)
     {
         Area::find($id)->fill($request->all())->save();
+        flash(trans("messages.success.area.update"))->success()->important();
         return redirect()->route('area.index');
     }
 
@@ -105,10 +107,13 @@ class AreasController extends Controller
     {
         if (Auth::user()->hasPermissionTo('delete areas')) {
             $area = Area::withTrashed()->find($id);
-            if($area->trashed())
+            if($area->trashed()) {
                 $area->restore();
-            else
+                flash(trans("messages.success.area.restore"))->info()->important();
+            } else {
                 $area->delete();
+                flash(trans("messages.success.area.delete"))->warning()->important();
+            }
             return redirect()->back();
         } else {
             flash(trans("permission.delete.area"))->error()->important();

@@ -47,6 +47,7 @@ class MaintenanceTypesController extends Controller
     public function store(Request $request)
     {
         MaintenanceType::create($request->all());
+        flash(trans("messages.success.maintenance-type.store"))->success()->important();
         return redirect()->route('maintenance-type.index');
     }
 
@@ -92,6 +93,7 @@ class MaintenanceTypesController extends Controller
     public function update(Request $request, $id)
     {
         MaintenanceType::find($id)->fill($request->all())->save();
+        flash(trans("messages.success.maintenance-type.update"))->success()->important();
         return redirect()->route('maintenance-type.index');
     }
 
@@ -105,10 +107,13 @@ class MaintenanceTypesController extends Controller
     {
         if (Auth::user()->hasPermissionTo('delete maintenance types')) {
             $maintenance_type = MaintenanceType::withTrashed()->find($id);
-            if($maintenance_type->trashed())
+            if($maintenance_type->trashed()) {
                 $maintenance_type->restore();
-            else
+                flash(trans("messages.success.maintenance-type.restore"))->info()->important();
+            } else {
                 $maintenance_type->delete();
+                flash(trans("messages.success.maintenance-type.delete"))->warning()->important();
+            }
             return redirect()->back();
         } else {
             flash(trans("permission.delete.maintenance-type"))->error()->important();

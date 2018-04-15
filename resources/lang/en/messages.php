@@ -30,7 +30,7 @@ return [
             'delete' => 'The maintenance has been removed correctly.', 
             'restore' => 'The maintenance has been restored correctly.', 
         ],
-        'maintenance type' => [
+        'maintenance-type' => [
             'store' => 'The maintenance type has been stored correctly.', 
             'update' => 'The maintenance type has been updated correctly.', 
             'delete' => 'The maintenance type has been removed correctly.', 
