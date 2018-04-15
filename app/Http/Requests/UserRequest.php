@@ -39,10 +39,10 @@ class UserRequest extends FormRequest
     public function update(){
         $user = User::find($this->route()->parameters['user']);
         return [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email'.($user->email == $this->email ? '' : '|unique:users,email'),
-            'password' => $this->password ? 'confirmed|min:8' : '',
+            'first_name' => 'required|max:45',
+            'last_name' => 'required|max:45',
+            'email' => 'required|max:45|email'.($user->email == $this->email ? '' : '|unique:users,email'),
+            'password' => $this->password ? 'confirmed|min:8|max:45' : '',
         ];
     }
 }

@@ -15,7 +15,7 @@ class CreateMaintenancesTable extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('description');
+            $table->string('description', 512);
             $table->string('status');
             $table->integer('repeat_each');
             $table->date('programmed_to');

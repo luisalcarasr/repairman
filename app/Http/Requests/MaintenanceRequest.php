@@ -24,9 +24,9 @@ class MaintenanceRequest extends FormRequest
     public function store()
     {
         return [
-            'description' => 'required',
+            'description' => 'required|max:255',
             'repeat_each' => 'min:0|max:12',
-            'programmed_to' => 'required',
+            'programmed_to' => 'required|date|after_or_equal:today',
             'machine_id' => 'required',
             'maintenance_type_id' => 'required',
         ];
@@ -39,13 +39,13 @@ class MaintenanceRequest extends FormRequest
      */
     public function update(){
         return [
-            'description' => '',
+            'description' => 'max:512',
             'repeat_each' => 'min:0|max:12',
-            'programmed_to' => '',
-            'machine_id' => '',
-            'maintenance_type_id' => '',
-            'status' => '',
-            'started_at' => '',
+            'programmed_to' => 'date|after_or_equal:today',
+            'machine_id' => 'numeric',
+            'maintenance_type_id' => 'numeric',
+            'status' => 'max:255',
+            'started_at' => 'date|after_or_equal:today',
         ];
     }
 }
