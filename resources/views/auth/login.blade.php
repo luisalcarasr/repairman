@@ -4,7 +4,6 @@
 <section id="wrapper" class="new-login-register">
       <div class="lg-info-panel">
             <div class="inner-panel">
-                <a href="javascript:void(0)" class="p-20 di"><img src="../plugins/images/admin-logo.png"></a>
                 <div class="lg-content">
                     <h2>Maintenance System</h2>
                     <p class="text-muted"></p>

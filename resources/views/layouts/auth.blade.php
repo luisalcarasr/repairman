@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://rodasports.com.mx/www/wp-content/uploads/2015/06/ICON_RDSPRTS_TTR.jpg">
 <title>{{ config('app.name') }} - Sign In</title>
 <!-- Bootstrap Core CSS -->
 <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">

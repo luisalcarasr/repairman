@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://rodasports.com.mx/www/wp-content/uploads/2015/06/ICON_RDSPRTS_TTR.jpg">
     <title>{{ config('app.name') }} - @yield('title')</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -59,19 +59,12 @@
                 <div class="top-left-part">
                     <!-- Logo -->
                     <a class="logo" href="{{ route('index') }}">
-                        <!-- Logo icon image, you can use font-icon also -->
-                        <b>
-                            <!--This is dark logo icon-->
-                            <img src="{{ asset('plugins/images/admin-logo.png') }}" alt="home" class="dark-logo" />
-                            <!--This is light logo icon-->
-                            <img src="{{ asset('plugins/images/admin-logo-dark.png') }}" alt="home" class="light-logo" />
-                        </b>
                         <!-- Logo text image you can use text also -->
                         <span class="hidden-xs">
                             <!--This is dark logo text-->
-                            <img src="{{ asset('../plugins/images/admin-text.png') }}" alt="home" class="dark-logo" />
+                            <img src="{{ asset('../plugins/images/admin-text.jpeg') }}" alt="home" width="90%" class="img-responsive dark-logo" />
                             <!--This is light logo text-->
-                            <img src="{{ asset('../plugins/images/admin-text-dark.png') }}" alt="home" class="light-logo" />
+                            <img src="{{ asset('../plugins/images/admin-text-dark.jpeg') }}" alt="home" width="90%" class="img-responsive light-logo" />
                         </span>
                     </a>
                 </div>
