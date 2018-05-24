@@ -1,12 +1,12 @@
 @extends('layouts.main')
-@section('title', 'Edit an maintenance')
+@section('title', 'Editar un mantenimiento')
 @section('button')
 <button class="btn btn-info pull-right m-l-20" onclick="$('form').submit()">
     <i class="fa fa-edit text-white"></i>
 </button>
 @endsection
 @section('breadcrumb')
-    <li class="active"><a href="{{ route('maintenance.index') }}">Users</a></li>
+    <li class="active"><a href="{{ route('maintenance.index') }}">Usuarios</a></li>
     <li class="active"><a href="{{ route('maintenance.edit', $maintenance->id) }}">Edit</a></li>
 @endsection
 @section('content')
@@ -17,9 +17,9 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group {{ $errors->has('machine_id') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="machine_id">Machine</label>
+                        <label class="col-md-12" for="machine_id">Máquina</label>
                         <div class="col-md-12">
-                            <select id="machine_id" name="machine_id" class="form-control" placeholder="Machine" value="{{ $errors->has('machine_id') ? old('machine_id') : $maintenance->machine_id }}">
+                            <select id="machine_id" name="machine_id" class="form-control" placeholder="Máquina" value="{{ $errors->has('machine_id') ? old('machine_id') : $maintenance->machine_id }}">
                                 @foreach($machines as $machine)
                                     <option value="{{ $machine->id }}" {{ old('machine_id') == $machine->id || $machine->id == $maintenance->machine_id  ? 'selected' : '' }}>{{ $machine->description }}</option>
                                 @endforeach
@@ -32,9 +32,9 @@
                         </div>
                     </div>
                     <div class="form-group {{ $errors->has('maintenance_type_id') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="maintenance_type_id">Maintenance type</label>
+                        <label class="col-md-12" for="maintenance_type_id">Tipo de mantenimiento</label>
                         <div class="col-md-12">
-                            <select id="maintenance_type_id" name="maintenance_type_id" class="form-control" placeholder="Maintenance type" value="{{ $errors->has('maintenance_type_id') ? old('maintenance_type_id') : $maintenance->maintenance_type_id }}">
+                            <select id="maintenance_type_id" name="maintenance_type_id" class="form-control" placeholder="Tipo de mantenimiento" value="{{ $errors->has('maintenance_type_id') ? old('maintenance_type_id') : $maintenance->maintenance_type_id }}">
                                 @foreach($maintenance_types as $maintenance_type)
                                     <option value="{{ $maintenance_type->id }}" {{ old('maintenance_type_id') == $maintenance_type->id || $maintenance_type->id == $maintenance->maintenance_type_id ? 'selected' : '' }}>{{ $maintenance_type->name }}</option>
                                 @endforeach
@@ -47,9 +47,9 @@
                         </div>
                     </div>
                     <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="description">Description</label>
+                        <label class="col-md-12" for="description">Descripción</label>
                         <div class="col-md-12">
-                            <input type="text" id="description" name="description" class="form-control" placeholder="Description" value="{{ $errors->has('description') ? old('description') : $maintenance->description }}">
+                            <input type="text" id="description" name="description" class="form-control" placeholder="Descripción" value="{{ $errors->has('description') ? old('description') : $maintenance->description }}">
                             @if ($errors->has('description'))
                                 <span class="help-block with-errors">
                                     <strong>{{ $errors->first('description') }}</strong>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="form-group {{ $errors->has('programmed_to') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="programmed_to">Programmed to</label>
+                        <label class="col-md-12" for="programmed_to">Fecha</label>
                         <div class="col-md-12">
                             <input type="date" id="programmed_to" name="programmed_to" class="form-control" value="{{ $errors->has('programmed_to') ? old('programmed_to') : $maintenance->programmed_to->format('Y-m-d') }}">
                             @if ($errors->has('programmed_to'))

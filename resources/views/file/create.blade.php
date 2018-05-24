@@ -1,13 +1,13 @@
 @extends('layouts.main')
-@section('title', 'Create an new file')
+@section('title', 'Crear un nuevo file')
 @section('button')
 <button class="btn btn-info pull-right m-l-20" onclick="$('form').submit()">
     <i class="fa fa-save text-white"></i>
 </button>
 @endsection
 @section('breadcrumb')
-    <li class="active"><a href="{{ route('file.index') }}">Machines</a></li>
-    <li class="active"><a href="{{ route('file.create') }}">Create</a></li>
+    <li class="active"><a href="{{ route('file.index') }}">Archivos</a></li>
+    <li class="active"><a href="{{ route('file.create') }}">Crear</a></li>
 @endsection
 @section('content')
     <div class="row">
@@ -16,9 +16,9 @@
                 <form class="form-horizontal" method="POST" action="{{ route('file.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="name">Name</label>
+                        <label class="col-md-12" for="name">Nombre</label>
                         <div class="col-md-12">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{{ old('name') }}">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Nombre" value="{{ old('name') }}">
                             @if ($errors->has('name'))
                                 <span class="help-block with-errors">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="form-group {{ $errors->has('file') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="file">File</label>
+                        <label class="col-md-12" for="file">Archivo</label>
                         <div class="col-md-12">
                             <input type="file" if="file" name="doc" class="form-control-file" value="{{ old('file') }}"/>
                             @if ($errors->has('file'))

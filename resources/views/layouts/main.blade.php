@@ -118,7 +118,7 @@
                     <li> 
                         <a href="{{route('dashboard.index')}}" class="waves-effect">
                             <i class="mdi mdi-home fa-fw" data-icon="v"></i>
-                            <span class="hide-menu"> {{ __('Dashboard') }} </span>
+                            <span class="hide-menu"> {{ __('Inicio') }} </span>
                         </a>
                     </li>
                     <li> 
@@ -130,31 +130,31 @@
                     <li> 
                         <a href="{{route('file.index')}}" class="waves-effect">
                             <i class="mdi mdi-file fa-fw" data-icon="v"></i>
-                            <span class="hide-menu"> {{ __('Files') }} </span>
+                            <span class="hide-menu"> {{ __('Archivos') }} </span>
                         </a>
                     </li>
                     <li> 
                         <a href="{{route('machine.index')}}" class="waves-effect">
                             <i class="mdi mdi-robot fa-fw" data-icon="v"></i>
-                            <span class="hide-menu"> {{ __('Machines') }} </span>
+                            <span class="hide-menu"> {{ __('Máquinas') }} </span>
                         </a>
                     </li>
                     <li> 
                         <a href="{{route('maintenance.index')}}" class="waves-effect">
                             <i class="mdi mdi-calendar fa-fw" data-icon="v"></i>
-                            <span class="hide-menu"> {{ __('Maintenances') }} </span>
+                            <span class="hide-menu"> {{ __('Mantenimientos') }} </span>
                         </a>
                     </li>
                     <li> 
                         <a href="{{route('maintenance-type.index')}}" class="waves-effect">
                             <i class="mdi mdi-settings fa-fw" data-icon="v"></i>
-                            <span class="hide-menu"> {{ __('Maintenance types') }} </span>
+                            <span class="hide-menu"> {{ __('Tipo de mantenimientos') }} </span>
                         </a>
                     </li>
                     <li> 
                         <a href="{{route('user.index')}}" class="waves-effect">
                             <i class="mdi mdi-account-multiple fa-fw" data-icon="v"></i>
-                            <span class="hide-menu"> {{ __('Users') }} </span>
+                            <span class="hide-menu"> {{ __('Usuarios') }} </span>
                         </a>
                     </li>
                 </ul>

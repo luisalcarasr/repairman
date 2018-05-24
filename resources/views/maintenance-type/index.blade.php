@@ -1,12 +1,12 @@
 @extends('layouts.main')
-@section('title', 'Maintenance types')
+@section('title', 'Tipo de mantenimientos')
 @section('button')
 <a href="{{ route('maintenance-type.create') }}" class="btn btn-info pull-right m-l-20">
     <i class="fa fa-plus text-white"></i>
 </a>
 @endsection
 @section('breadcrumb')
-    <li class="active"><a href="{{ route('maintenance-type.index') }}">Maintenance types</a></li>
+    <li class="active"><a href="{{ route('maintenance-type.index') }}">Tipo de mantenimientos</a></li>
 @endsection
 @section('content')
     <div class="row">
@@ -17,12 +17,12 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Created at</th>
-                                <th>Updated at</th>
-                                <th>Deleted at</th>
-                                <th>Options</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Fecha de creación</th>
+                                <th>Fecha de actualización</th>
+                                <th>Fecha de eliminación</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>

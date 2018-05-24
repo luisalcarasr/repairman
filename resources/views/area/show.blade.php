@@ -6,7 +6,7 @@
 </a>
 @endsection
 @section('breadcrumb')
-    <li class="active"><a href="{{ route('machine.index') }}">Machines</a></li>
+    <li class="active"><a href="{{ route('machine.index') }}">Máquinas</a></li>
 @endsection
 @section('content')
     <div class="row">
@@ -17,12 +17,12 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Description</th>
+                                <th>Descripción</th>
                                 <th>Area</th>
-                                <th>Created at</th>
-                                <th>Updated at</th>
-                                <th>Deleted at</th>
-                                <th>Options</th>
+                                <th>Fecha de creación</th>
+                                <th>Fecha de actualización</th>
+                                <th>Fecha de eliminación</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>

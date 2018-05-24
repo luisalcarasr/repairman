@@ -5,7 +5,7 @@
       <div class="lg-info-panel">
             <div class="inner-panel">
                 <div class="lg-content">
-                    <h2>Maintenance System</h2>
+                    <h2>Mantenimiento System</h2>
                     <p class="text-muted"></p>
                 </div>
             </div>

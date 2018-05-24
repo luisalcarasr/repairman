@@ -42,6 +42,12 @@ return [
             'delete' => 'The user has been removed correctly.', 
             'restore' => 'The user has been restored correctly.', 
         ],
+        'file' => [
+            'store' => 'The file has been stored correctly.', 
+            'update' => 'The file has been updated correctly.', 
+            'delete' => 'The file has been removed correctly.', 
+            'restore' => 'The file has been restored correctly.', 
+        ],
     ],
 
 ];

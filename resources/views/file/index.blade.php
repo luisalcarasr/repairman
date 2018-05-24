@@ -1,12 +1,12 @@
 @extends('layouts.main')
-@section('title', 'Maintenances')
+@section('title', 'Archivos')
 @section('button')
 <a href="{{ route('file.create') }}" class="btn btn-info pull-right m-l-20">
     <i class="fa fa-plus text-white"></i>
 </a>
 @endsection
 @section('breadcrumb')
-    <li class="active"><a href="{{ route('file.index') }}">Maintenances</a></li>
+    <li class="active"><a href="{{ route('file.index') }}">Mantenimientos</a></li>
 @endsection
 @section('content')
     <div class="row">
@@ -17,9 +17,9 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Name</th>
-                                <th>Created at</th>
-                                <th>Options</th>
+                                <th>Nombre</th>
+                                <th>Fecha de creación</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>

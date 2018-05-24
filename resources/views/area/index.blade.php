@@ -17,12 +17,12 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Created at</th>
-                                <th>Updated at</th>
-                                <th>Deleted at</th>
-                                <th>Options</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Fecha de creación</th>
+                                <th>Fecha de actualización</th>
+                                <th>Fecha de eliminación</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>

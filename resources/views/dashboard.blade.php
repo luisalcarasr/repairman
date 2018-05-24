@@ -1,7 +1,7 @@
 @extends('layouts.main')
-@section('title', 'Dashboard')
+@section('title', 'Inicio')
 @section('breadcrumb')
-    <li class="active"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
+    <li class="active"><a href="{{ route('dashboard.index') }}">Inicio</a></li>
 @endsection
 @section('content')
     <div class="row">
@@ -12,11 +12,11 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Machine</th>
-                                <th>Description</th>
-                                <th>Maintenance</th>
-                                <th>Programmed to</th>
-                                <th>Options</th>
+                                <th>Máquina</th>
+                                <th>Descripción</th>
+                                <th>Mantenimiento</th>
+                                <th>Fecha</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>

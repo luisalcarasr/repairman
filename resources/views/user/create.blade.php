@@ -1,13 +1,13 @@
 @extends('layouts.main')
-@section('title', 'Create an new user')
+@section('title', 'Crear un nuevo usuario')
 @section('button')
 <button class="btn btn-info pull-right m-l-20" onclick="$('form').submit()">
     <i class="fa fa-save text-white"></i>
 </button>
 @endsection
 @section('breadcrumb')
-    <li class="active"><a href="{{ route('user.index') }}">Users</a></li>
-    <li class="active"><a href="{{ route('user.create') }}">Create</a></li>
+    <li class="active"><a href="{{ route('user.index') }}">Usuarios</a></li>
+    <li class="active"><a href="{{ route('user.create') }}">Crear</a></li>
 @endsection
 @section('content')
     <div class="row">
@@ -16,9 +16,9 @@
                 <form class="form-horizontal" method="POST" action="{{ route('user.store') }}">
                     @csrf
                     <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="first_name">First name</label>
+                        <label class="col-md-12" for="first_name">Nombre(s)</label>
                         <div class="col-md-12">
-                            <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First name" value="{{ old('first_name') }}">
+                            <input type="text" id="first_name" name="first_name" class="form-control" placeholder="Nombre(s)" value="{{ old('first_name') }}">
                             @if ($errors->has('first_name'))
                                 <span class="help-block with-errors">
                                     <strong>{{ $errors->first('first_name') }}</strong>
@@ -27,9 +27,9 @@
                         </div>
                     </div>
                     <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="last_name">Last name</label>
+                        <label class="col-md-12" for="last_name">Apellido(s)</label>
                         <div class="col-md-12">
-                            <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last name" value="{{ old('last_name') }}">
+                            <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Apellido(s)" value="{{ old('last_name') }}">
                             @if ($errors->has('last_name'))
                                 <span class="help-block with-errors">
                                     <strong>{{ $errors->first('last_name') }}</strong>
@@ -49,9 +49,9 @@
                         </div>
                     </div>
                     <div class="form-group {{ $errors->has('role_id') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="_id">Role</label>
+                        <label class="col-md-12" for="_id">Rol</label>
                         <div class="col-md-12">
-                            <select id="role_id" name="role_id" class="form-control" placeholder="Role" value="{{ old('role_id') }}">
+                            <select id="role_id" name="role_id" class="form-control" placeholder="Rol" value="{{ old('role_id') }}">
                                 @foreach($roles as $role)
                                     <option value="{{ $role->id }}" {{ old('role_id') == $role->id || $role->name == 'supervisor' ? 'selected' : '' }}>{{ __('roles.'.$role->name) }}</option>
                                 @endforeach

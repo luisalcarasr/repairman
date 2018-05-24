@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Create a new area')
+@section('title', 'Crear una nueva area')
 @section('button')
 <button class="btn btn-info pull-right m-l-20" onclick="$('form').submit()">
     <i class="fa fa-save text-white"></i>
@@ -7,7 +7,7 @@
 @endsection
 @section('breadcrumb')
     <li class="active"><a href="{{ route('area.index') }}">Areas</a></li>
-    <li class="active"><a href="{{ route('area.create') }}">Create</a></li>
+    <li class="active"><a href="{{ route('area.create') }}">Crear</a></li>
 @endsection
 @section('content')
     <div class="row">
@@ -16,9 +16,9 @@
                 <form class="form-horizontal" method="POST" action="{{ route('area.store') }}">
                     @csrf
                     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="name">Name</label>
+                        <label class="col-md-12" for="name">Nombre</label>
                         <div class="col-md-12">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{{ old('name') }}">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Nombre" value="{{ old('name') }}">
                             @if ($errors->has('name'))
                                 <span class="help-block with-errors">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -27,9 +27,9 @@
                         </div>
                     </div>
                     <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="description">Description</label>
+                        <label class="col-md-12" for="description">Descripción</label>
                         <div class="col-md-12">
-                            <input type="text" id="description" name="description" class="form-control" placeholder="Description" value="{{ old('description') }}">
+                            <input type="text" id="description" name="description" class="form-control" placeholder="Descripción" value="{{ old('description') }}">
                             @if ($errors->has('description'))
                                 <span class="help-block with-errors">
                                     <strong>{{ $errors->first('description') }}</strong>

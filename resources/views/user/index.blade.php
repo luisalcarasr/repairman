@@ -1,12 +1,12 @@
 @extends('layouts.main')
-@section('title', 'Users')
+@section('title', 'Usuarios')
 @section('button')
 <a href="{{ route('user.create') }}" class="btn btn-info pull-right m-l-20">
     <i class="fa fa-plus text-white"></i>
 </a>
 @endsection
 @section('breadcrumb')
-    <li class="active"><a href="{{ route('user.index') }}">Users</a></li>
+    <li class="active"><a href="{{ route('user.index') }}">Usuarios</a></li>
 @endsection
 @section('content')
     <div class="row">
@@ -17,14 +17,14 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>First name</th>
-                                <th>Last name</th>
-                                <th>Role</th>
+                                <th>Nombre(s)</th>
+                                <th>Apellido(s)</th>
+                                <th>Rol</th>
                                 <th>Email</th>
-                                <th>Created at</th>
-                                <th>Updated at</th>
-                                <th>Deleted at</th>
-                                <th>Options</th>
+                                <th>Fecha de creación</th>
+                                <th>Fecha de actualización</th>
+                                <th>Fecha de eliminación</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>

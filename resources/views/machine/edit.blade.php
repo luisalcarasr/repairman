@@ -1,12 +1,12 @@
 @extends('layouts.main')
-@section('title', 'Edit an machine')
+@section('title', 'Editar un máquina')
 @section('button')
 <button class="btn btn-info pull-right m-l-20" onclick="$('form').submit()">
     <i class="fa fa-edit text-white"></i>
 </button>
 @endsection
 @section('breadcrumb')
-    <li class="active"><a href="{{ route('machine.index') }}">Machines</a></li>
+    <li class="active"><a href="{{ route('machine.index') }}">Máquinas</a></li>
     <li class="active"><a href="{{ route('machine.edit', $machine->id) }}">Edit</a></li>
 @endsection
 @section('content')
@@ -18,9 +18,9 @@
                     @method('PUT')
                     <div class="form-group">
                     <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                        <label class="col-md-12" for="description">Description</label>
+                        <label class="col-md-12" for="description">Descripción</label>
                         <div class="col-md-12">
-                            <input type="text" id="description" name="description" class="form-control" placeholder="Description" value="{{ $errors->has('description') ? old('description') : $machine->description }}">
+                            <input type="text" id="description" name="description" class="form-control" placeholder="Descripción" value="{{ $errors->has('description') ? old('description') : $machine->description }}">
                             @if ($errors->has('description'))
                                 <span class="help-block with-errors">
                                     <strong>{{ $errors->first('description') }}</strong>
