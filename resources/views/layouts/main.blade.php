@@ -128,6 +128,12 @@
                         </a>
                     </li>
                     <li> 
+                        <a href="{{route('file.index')}}" class="waves-effect">
+                            <i class="mdi mdi-file fa-fw" data-icon="v"></i>
+                            <span class="hide-menu"> {{ __('Files') }} </span>
+                        </a>
+                    </li>
+                    <li> 
                         <a href="{{route('machine.index')}}" class="waves-effect">
                             <i class="mdi mdi-robot fa-fw" data-icon="v"></i>
                             <span class="hide-menu"> {{ __('Machines') }} </span>

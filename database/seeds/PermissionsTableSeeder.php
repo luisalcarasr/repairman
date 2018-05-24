@@ -19,6 +19,7 @@ class PermissionsTableSeeder extends Seeder
 
         // Permissions for read the records.
         Permission::create(['name' => 'read areas']);
+        Permission::create(['name' => 'read files']);
         Permission::create(['name' => 'read machines']);
         Permission::create(['name' => 'read maintenances']);
         Permission::create(['name' => 'read maintenance types']);
@@ -29,6 +30,7 @@ class PermissionsTableSeeder extends Seeder
 
         // Permissions for write the records.
         Permission::create(['name' => 'write areas']);
+        Permission::create(['name' => 'write files']);
         Permission::create(['name' => 'write machines']);
         Permission::create(['name' => 'write maintenances']);
         Permission::create(['name' => 'write maintenance types']);
@@ -36,6 +38,7 @@ class PermissionsTableSeeder extends Seeder
 
         // Permissions for delete the records.
         Permission::create(['name' => 'delete areas']);
+        Permission::create(['name' => 'delete files']);
         Permission::create(['name' => 'delete machines']);
         Permission::create(['name' => 'delete maintenances']);
         Permission::create(['name' => 'delete maintenance types']);
