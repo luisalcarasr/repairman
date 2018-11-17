@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MaintenanceTypeRequest as Request;
 use Illuminate\Support\Facades\Auth;
-use App\MaintenanceType;
+use App\Models\MaintenanceType;
 
 class MaintenanceTypesController extends Controller
 {

@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MaintenanceRequest as Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Maintenance;
-use App\Machine;
-use App\MaintenanceType;
+use App\Models\Maintenance;
+use App\Models\Machine;
+use App\Models\MaintenanceType;
 
 class MaintenancesController extends Controller
 {

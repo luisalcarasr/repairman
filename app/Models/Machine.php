@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Area extends Model
+class Machine extends Model
 {
     use SoftDeletes;
 
@@ -15,7 +15,7 @@ class Area extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description',
+        'description', 'area_id',
     ];
     
     /**
@@ -29,8 +29,13 @@ class Area extends Model
         'deleted_at',
     ];
 
-    public function machines() 
+    public function maintenances() 
     {
-        return $this->hasMany('App\Machine');
+        return $this->hasMany('App\Maintenance');
+    }
+
+    public function area()
+    {
+        return $this->belongsTo('App\Area');
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FileRequest as Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-use App\File;
+use App\Models\File;
 
 class FilesController extends Controller
 {

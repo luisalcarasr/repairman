@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AreaRequest as Request;
 use Illuminate\Support\Facades\Auth;
-use App\Area;
+use App\Models\Area;
 
 class AreasController extends Controller
 {

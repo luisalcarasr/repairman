@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Machine extends Model
+class Maintenance extends Model
 {
     use SoftDeletes;
 
@@ -15,9 +15,9 @@ class Machine extends Model
      * @var array
      */
     protected $fillable = [
-        'description', 'area_id',
+        'description', 'programmed_to', 'repeat_each', 'machine_id', 'maintenance_type_id', 'status', 'started_at'
     ];
-    
+
     /**
      * The attributes that should be dates.
      *
@@ -27,15 +27,17 @@ class Machine extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'started_at',
+        'programmed_to',
     ];
 
-    public function maintenances() 
+    public function machine()
     {
-        return $this->hasMany('App\Maintenance');
+        return $this->belongsTo('App\Machine');
     }
 
-    public function area()
+    public function maintenance_type()
     {
-        return $this->belongsTo('App\Area');
+        return $this->belongsTo('App\MaintenanceType');
     }
 }

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MachineRequest as Request;
 use Illuminate\Support\Facades\Auth;
-use App\Machine;
-use App\Area;
+use App\Models\Machine;
+use App\Models\Area;
 
 class MachinesController extends Controller
 {

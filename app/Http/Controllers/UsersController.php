@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 Use App\Http\Requests\UserRequest as Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
-use App\User;
+use App\Models\User;
 
 class UsersController extends Controller
 {
