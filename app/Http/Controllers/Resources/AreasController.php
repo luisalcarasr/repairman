@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Resources;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AreaRequest as Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Area;
+use Illuminate\Support\Facades\Auth;
 
 class AreasController extends Controller
 {
@@ -41,7 +42,7 @@ class AreasController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -54,7 +55,7 @@ class AreasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -70,7 +71,7 @@ class AreasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -86,8 +87,8 @@ class AreasController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -100,14 +101,14 @@ class AreasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         if (Auth::user()->hasPermissionTo('delete areas')) {
             $area = Area::withTrashed()->find($id);
-            if($area->trashed()) {
+            if ($area->trashed()) {
                 $area->restore();
                 flash(trans("messages.success.area.restore"))->info()->important();
             } else {

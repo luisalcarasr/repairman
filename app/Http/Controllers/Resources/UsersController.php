@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Resources;
 
-Use App\Http\Requests\UserRequest as Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest as Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
-use App\Models\User;
 
 class UsersController extends Controller
 {
@@ -42,7 +43,7 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -56,7 +57,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -72,7 +73,7 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -88,14 +89,14 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $user = User::find($id)->fill($request->all());
-        if($request->password) {
+        if ($request->password) {
             $user->password = bcrypt($request->password);
         }
         $user->save();
@@ -110,7 +111,7 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -118,10 +119,11 @@ class UsersController extends Controller
         if (Auth::user()->hasPermissionTo('delete users')) {
             $user = User::withTrashed()->find($id);
 
-            if (User::role('admin')->get()->count() == 1 && User::role('admin')->get()->first()->id == $user->id)
+            if (User::role('admin')->get()->count() == 1 && User::role('admin')->get()->first()->id == $user->id) {
                 flash(trans("messages.last_admin"))->error()->important();
-            else {
-                if($user->trashed()) {
+                return back();
+            } else {
+                if ($user->trashed()) {
                     $user->restore();
                     flash(trans("messages.success.user.restore"))->info()->important();
                 } else {

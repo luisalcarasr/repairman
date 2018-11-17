@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Resources;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\MaintenanceRequest as Request;
-use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
-use App\Models\Maintenance;
 use App\Models\Machine;
+use App\Models\Maintenance;
 use App\Models\MaintenanceType;
+use Illuminate\Support\Facades\Auth;
 
 class MaintenancesController extends Controller
 {
@@ -44,7 +44,7 @@ class MaintenancesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +61,7 @@ class MaintenancesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -77,7 +77,7 @@ class MaintenancesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -93,8 +93,8 @@ class MaintenancesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -108,8 +108,8 @@ class MaintenancesController extends Controller
     /**
      * Complete the maintenance.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function complete(Request $request, $id)
@@ -133,14 +133,14 @@ class MaintenancesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         if (Auth::user()->hasPermissionTo('delete maintenances')) {
             $maintenance = Maintenance::withTrashed()->find($id);
-            if($maintenance->trashed()) {
+            if ($maintenance->trashed()) {
                 $maintenance->restore();
                 $maintenance->status = 'restored';
                 flash(trans("messages.success.maintenance.restore"))->info()->important();

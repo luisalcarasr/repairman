@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Resources;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\FileRequest as Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
 use App\Models\File;
+use Illuminate\Support\Facades\Auth;
 
 class FilesController extends Controller
 {
@@ -42,7 +42,7 @@ class FilesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -59,13 +59,13 @@ class FilesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         if (Auth::user()->hasPermissionTo('read files')) {
-            return redirect()->to('/'.explode('/',File::find($id)->file)[1]);
+            return redirect()->to('/' . explode('/', File::find($id)->file)[1]);
         } else {
             flash(trans("permission.read.file"))->error()->important();
             return back();
@@ -75,7 +75,7 @@ class FilesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -91,8 +91,8 @@ class FilesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
