@@ -12,11 +12,12 @@
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.5.0",
         "axios": "^0.18",
+        "buefy": "^0.7.1",
+        "bulma": "^0.7.2",
         "cross-env": "^5.1",
         "laravel-mix": "^2.0",
-        "lodash": "^4.17.4"
+        "lodash": "^4.17.4",
+        "vue": "^2.5.17"
     },
-    "dependencies": {
-        "bulma": "^0.7.2"
-    }
+    "dependencies": {}
 }
