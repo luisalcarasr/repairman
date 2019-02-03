@@ -19,5 +19,7 @@
         "lodash": "^4.17.4",
         "vue": "^2.5.17"
     },
-    "dependencies": {}
+    "dependencies": {
+        "vue-tables-2": "^1.4.70"
+    }
 }
